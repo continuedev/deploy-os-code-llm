@@ -3,6 +3,7 @@
 ![Deploy image](deploy.png)
 
 Deploying an open-source code LLM for your team right can be difficult. You need to:
+
 - find a deployment method that is private and secure enough
 - consistently get the GPUs you need when you need them
 - make sure your LLM of choice works reliably on those GPUs
@@ -11,6 +12,7 @@ Deploying an open-source code LLM for your team right can be difficult. You need
 We started this repository based on what we've learned from the [Continue community](https://github.com/continuedev/continue) and the larger Dev+AI community about how to get through these challenges. Feel free to suggest improvements and help us keep it up-to-date by opening an issue or pull request!
 
 To deploy an open-source code LLM for your dev team, here are the five questions that you need to answer:
+
 1. [Is there an LLM that is valuable enough yet?](#1-is-there-an-llm-that-is-valuable-enough-yet)
 2. [Is there a deployment method that fits yet?](#2-is-there-a-deployment-method-that-fits-yet)
 3. [Can you get a hold of enough memory now?](#3-can-you-get-a-hold-of-enough-memory-now)
@@ -22,6 +24,7 @@ To deploy an open-source code LLM for your dev team, here are the five questions
 Before you invest time into figuring out how to deploy an open-source LLM for your team, it's worth first making sure there is an LLM you want to deploy and figuring out which one that is.
 
 As of October 2023, the [most popular open-source LLMs for coding are 1) Code Llama, 2) WizardCoder, 3) Phind-CodeLlama, 4) Mistral, 5) StarCoder, and 6) Llama 2](https://github.com/continuedev/what-llm-to-use#open-source). We recommend playing around with these models using [Continue](https://github.com/continuedev/continue) and [Together AI](https://together.ai/apis) as your first step. You'll get $25 of free credits when you get started with the Together API, which should be more than enough to try out the different sizes of each of these models:
+
 - Code Llama - Instruct (7B, 13B, 34B)
 - WizardCoder (7B, 13B, 34B)
 - Phind-CodeLlama (34B)
@@ -41,31 +44,31 @@ Depending on whether you work at a small startup or a large organization, you mi
 
 #### Together
 
-Together is a cloud platform for running LLMs. All of the most popular open-source code models are available. You can learn more [here](https://together.ai)
+[Together](https://together.ai) is a cloud platform for running LLMs. All of the most popular open-source code models are available.
 
 #### Hugging Face Inference Endpoints
 
-Hugging Face Inference Endpoints is another service where you can run LLMs. All of the most popular open-source code models are available too. It's also possible to deploy using your own AWS account via a Private Link. You can learn more [here](https://huggingface.co/inference-endpoints).
+[Hugging Face Inference Endpoints](https://huggingface.co/inference-endpoints) is another service where you can run most of the popular open-source code LLMs. It's also possible to deploy using your own AWS account via a Private Link.
 
 #### Others
 
-There are a number of other SaaS providers, including [Replicate](https://replicate.com/), [Haven](https://haven.run/), and [Anyscale Endpoints](https://www.anyscale.com/endpoints). We don't have a lot of experience with them or others, but if you do, open an issue / PR and let us know about your experience!
+There are a number of other SaaS providers, including [Replicate](https://replicate.com/), [Haven](https://haven.run/), and [Anyscale Endpoints](https://www.anyscale.com/endpoints). If you have experience with these or others, please open an issue / PR and let us know about your experience!
 
 ### Cloud providers
 
-Hosting LLMs yourself requires you to create a setup that provides adequate response times while scaling to many concurrent users. As a result, you are likely going to want to use technologies than are optimized for this, rather than using a general-purpose inference framework.
+Hosting LLMs yourself requires you to create a setup that provides adequate response times while scaling to many concurrent users. As a result, you'll likely want to use technologies that are optimized for this.
 
 #### TGI
 
-Text Generation Inference (TGI) is an open-source toolkit for deploying and serving LLMs. It is designed for fast inference and high throughput, enabling you to provide a highly concurrent, low latency experience. As of October 2023, TGI has been optimized for Code Llama, Mistral, StarCoder, and Llama 2 on NVIDIA A100, A10G and T4 GPUs. It's possible to use other models and different hardware, it just might be a more difficult setup and the models might not perform as well. The easiest way of getting started is using the official Docker container [here](https://huggingface.co/docs/text-generation-inference/quicktour).
+Text Generation Inference (TGI) is an open-source toolkit for deploying and serving LLMs. It is designed for fast inference and high throughput, enabling you to provide a highly concurrent, low latency experience. As of October 2023, TGI has been optimized for Code Llama, Mistral, StarCoder, and Llama 2 on NVIDIA A100, A10G and T4 GPUs. It's possible to use other models and different hardware, it just might be a more difficult setup and the models might not perform as well. The easiest way of getting started is using the [official Docker container](https://huggingface.co/docs/text-generation-inference/quicktour).
 
 #### vLLM
 
-vLLM is a fast and easy-to-use library for LLM inference and serving. It also has very high serving throughput, handles continuous batching of incoming requests, and does efficient management of memory. As of October 2023, it supports Code Llama, Mistral, StarCoder, and Llama 2, though it's also possible to use other Hugging Face models too. You can use [vLLM with SkyPilot](https://blog.skypilot.co/serving-llm-24x-faster-on-the-cloud-with-vllm-and-skypilot/). You can also read more on their docs [here](https://vllm.readthedocs.io/en/latest/).
+vLLM is a fast and easy-to-use library for LLM inference and serving. It has very high serving throughput, handles continuous batching of incoming requests, and manages memory efficiently. As of October 2023, it supports Code Llama, Mistral, StarCoder, and Llama 2, though it's also possible to use other Hugging Face models. Notably, you can use [vLLM with SkyPilot](https://blog.skypilot.co/serving-llm-24x-faster-on-the-cloud-with-vllm-and-skypilot/). To learn more, check out their [docs](https://vllm.readthedocs.io/en/latest/).
 
 #### SkyPilot
 
-SkyPilot is a framework for running LLMs on any cloud, offering maximum cost savings, highest GPU availability, and managed execution. SkyPilot abstracts away cloud infrastructure by launching jobs and clusters on any cloud, automatically managing the queuing and running of many jobs, and maximizing GPU availability for your jobs by provisioning (with automatic failover) in all zones/regions/clouds you are able to use. You can use it with AWS, Azure, GCP, and a number of other clouds. They have made it easy serve LLMs with vLLM in your own cloud using SkyPilot by [providing a simple SkyPilot yaml task file to launch vLLM](https://github.com/skypilot-org/skypilot/tree/master/llm/vllm). You can also read more on their docs [here](https://skypilot.readthedocs.io/en/latest/).
+SkyPilot is a framework for running LLMs on any cloud, offering maximum cost savings, highest GPU availability, and managed execution. It abstracts away cloud infrastructure by launching jobs and clusters on any cloud, automatically queueing and running them, and maximizing GPU availability by provisioning (with automatic failover) in all zones/regions/clouds you are able to use. You can use it with AWS, Azure, GCP, and a number of other clouds. They have made it easy serve LLMs with vLLM in your own cloud using SkyPilot by [providing a simple SkyPilot yaml task file to launch vLLM](https://github.com/skypilot-org/skypilot/tree/master/llm/vllm). You can also read more in their [docs](https://skypilot.readthedocs.io/en/latest/).
 
 #### AWS
 
@@ -75,35 +78,35 @@ Using SkyPilot or doing it on your own, you can deploy virtual machines that hav
 
 ##### Amazon Sagemaker
 
-On Amazon Sagemaker, you can use [Hugging Face LLM Inference Deep Learning Containers (DLCs)](https://aws.amazon.com/blogs/machine-learning/announcing-the-launch-of-new-hugging-face-llm-inference-containers-on-amazon-sagemaker) to deploy LLMs, which are also powered by TGI. Deploying here enables you to use SageMaker’s managed service capabilitiess like autoscaling, health checks, and model monitoring. As of October 2023, it supports Code Llama, Mistral, StarCoder, and Llama 2. There is a notebook that shows how to use Sagemaker for LLM hosting [here](https://github.com/awslabs/llm-hosting-container/blob/main/examples/huggingface/huggingface-large-model-inference.ipynb).
+On Amazon Sagemaker, you can use [Hugging Face Deep Learning Containers (DLCs)](https://aws.amazon.com/blogs/machine-learning/announcing-the-launch-of-new-hugging-face-llm-inference-containers-on-amazon-sagemaker) to deploy LLMs, which are also powered by TGI. Deploying here enables you to use SageMaker’s managed service capabilitiess like autoscaling, health checks, and model monitoring. As of October 2023, it supports Code Llama, Mistral, StarCoder, and Llama 2. There is a notebook that shows how to use Sagemaker for LLM hosting [here](https://github.com/awslabs/llm-hosting-container/blob/main/examples/huggingface/huggingface-large-model-inference.ipynb).
 
 ##### AWS Bedrock
 
-Amazon Bedrock is a fully managed service that offers access to performant LLM deployments without having to manage any infrastructure. As of October 2023, only Llama 2 is available out of the most popular open-source code LLMs. You can learn more about it [here](https://aws.amazon.com/bedrock/).
+[Amazon Bedrock](https://aws.amazon.com/bedrock) is a fully managed service that offers access to performant LLM deployments without having to maintain any infrastructure. As of October 2023, only Llama 2 is available out of the most popular open-source code LLMs.
 
 #### Azure
 
 ##### Azure VM Instances
 
-Azure offers GPU optimized virtual machines. You can deploy these virtual machines using SkyPilot or doing it on your own. This is where you can set up TGI or vLLM to deploy and serve the LLM. You can learn more about it [here](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-gpu).
+Azure offers GPU optimized virtual machines. You can deploy these virtual machines using SkyPilot or on your own, and then set up TGI or vLLM to serve the LLM. Learn more about it [here](https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-gpu).
 
 #### Azure Maching Learning
 
-The Azure Maching Learning model catalog offers access to LLMs. As of October 2023, only Llama 2 is available out of the most popular open-source code LLMs. You can learn more about it [here](https://ml.azure.com/model/catalog).
+The [Azure Maching Learning model catalog](https://ml.azure.com/model/catalog) offers access to LLMs. As of October 2023, only Llama 2 is available out of the most popular open-source code LLMs.
 
 #### GCP
 
 ##### GCP VM Instances
 
-On Compute Engine, you can create Container-Optimized OS VM instances that have GPUs attached. You can do this with SkyPilot or on your own. This is where you can set up TGI or vLLM to deploy and serve the LLM. You can learn more about it [here](https://cloud.google.com/container-optimized-os/docs/how-to/run-gpus).
+On Compute Engine, [you can create](https://cloud.google.com/container-optimized-os/docs/how-to/run-gpus) Container-Optimized OS VM instances that have GPUs attached. This can be done with SkyPilot or on your own. You'll want to set up TGI or vLLM to serve the LLM.
 
 ##### GCP Model Garden on Vertex AI
 
-The Model Garden provides a curated collection of LLMs too. As of October 2023, only Code Llama and Llama 2 are available out of the most popular open-source code LLMs. You can learn more about it [here](https://cloud.google.com/model-garden).
+The [Model Garden](https://cloud.google.com/model-garden) provides a curated collection of LLMs. As of October 2023, only Code Llama and Llama 2 are available out of the most popular open-source code LLMs.
 
 #### Others
 
-There are a number of other deployment methods, including [Cog](https://github.com/replicate/cog), [Triton Inference Server](https://github.com/triton-inference-server/server), and [RayLLM](https://github.com/ray-project/ray-llm). We don't have a lot of experience with them yet, but if you do, open an issue / PR and let us know about your experience!
+There are a number of other deployment methods, including [Cog](https://github.com/replicate/cog), [Triton Inference Server](https://github.com/triton-inference-server/server), and [RayLLM](https://github.com/ray-project/ray-llm). If you have experience with these or others, please open an issue / PR and let us know about your experience!
 
 ### Resources
 
@@ -137,7 +140,7 @@ Instructions for requesting a quota increase on GCP can be found [here](https://
 
 #### Others
 
-There are a number of GPU-focused clouds, including [Lambda Labs](https://lambdalabs.com/), [Runpod](https://runpod.io), [ShadeForm](https://www.shadeform.ai), [Vast.ai](https://vast.ai/), [FluidStack](https://www.fluidstack.io), [CoreWeave](https://www.coreweave.com), [Paperspace](https://www.paperspace.com/), and [Jarvis Labs](https://jarvislabs.ai). We don't have a lot of experience with them yet, but if you do, open an issue / PR and let us know about your experience!
+There are a number of GPU-focused clouds, including [Lambda Labs](https://lambdalabs.com/), [Runpod](https://runpod.io), [ShadeForm](https://www.shadeform.ai), [Vast.ai](https://vast.ai/), [FluidStack](https://www.fluidstack.io), [CoreWeave](https://www.coreweave.com), [Paperspace](https://www.paperspace.com/), and [Jarvis Labs](https://jarvislabs.ai). If you have experience with these or others, please open an issue / PR and let us know about your experience!
 
 ## 4. Can you secure enough budget for your team?
 
@@ -155,11 +158,12 @@ Other SaaS providers, like Hugging Face Inference Endpoints, charge per unit of 
 
 ### Cloud providers
 
-Our rough estimate is that it will cost somewhere between $500 and $10,000 per month to deploy an open-source code LLM for your team on a cloud provider right now. 
+Our rough estimate is that it will cost somewhere between $500 and $10,000 per month to deploy an open-source code LLM for your team on a cloud provider right now.
 
 Here are some ways you might be able to minimize your costs:
 
 1. [SkyPilot](https://skypilot.readthedocs.io/en/latest/) helps you cut your cloud costs in three ways:
+
 - [Managed Spot](https://skypilot.readthedocs.io/en/latest/examples/spot-jobs.html): "3-6x cost savings using spot VMs with auto-recovery from preemptions"
 - Optimizer: "2x cost savings by auto-picking the cheapest VM/zone/region/cloud"
 - [Autostop](https://skypilot.readthedocs.io/en/latest/reference/auto-stop.html): "hands-free cleanup of idle clusters"
@@ -179,6 +183,7 @@ One of the other main benefits of using a SaaS provider is that they are respons
 ### Cloud providers
 
 To make sure you can maintain this deployment over time, you need to figure out answers to the following questions:
+
 - What happens when the deployment goes down?
 - How do you scale the resources allocated if the team grows?
 - How will you keep up with the latest open-source LLMs?
