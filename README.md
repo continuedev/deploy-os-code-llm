@@ -194,3 +194,5 @@ To make sure you can maintain this deployment over time, you need to figure out 
 ## Contributing
 
 If you see a way to improve our suggestions here, we welcome you to open a PR or an issue! We hope to maintain a community-driven and up-to-date guide of how to deploy an open-source code LLM for a dev team.
+
+*If you liked this blog post and want to read more about Dev+AI–the community of folks building software with the help of LLMs–in the future, join our monthly newsletter [here](https://continue.dev#newsletter).*
