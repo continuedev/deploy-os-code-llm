@@ -111,6 +111,7 @@ There are a number of other deployment methods, including [Cog](https://github.c
 ### Resources
 
 - [r/LocalLLaMA: Current best options for local LLM hosting?](https://www.reddit.com/r/LocalLLaMA/comments/1767pyg/current_best_options_for_local_llm_hosting/)
+- [Llama 2 on Amazon SageMaker a Benchmark](https://huggingface.co/blog/llama-sagemaker-benchmark)
 
 ## 3. Can you get a hold of enough memory now?
 
