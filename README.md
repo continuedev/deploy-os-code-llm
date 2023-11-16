@@ -72,7 +72,7 @@ SkyPilot is a framework for running LLMs on any cloud, offering maximum cost sav
 
 #### AnyScale Private Endpoints
 
-AnyScale Private Endpoints is a full-stack LLM API solution running in your cloud. It's designed to maximize performance and minimize cost inside your own environment. To learn more, check out their product page [here](https://www.anyscale.com/endpoints#private).
+AnyScale Private Endpoints is a full-stack LLM API solution running in your cloud. It's designed to maximize performance and minimize cost inside your own environment. The API it exposes is the same as the OpenAI API format. To learn more, check out its product page [here](https://www.anyscale.com/endpoints#private).
 
 #### AWS
 
