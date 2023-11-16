@@ -70,6 +70,10 @@ vLLM is a fast and easy-to-use library for LLM inference and serving. It has ver
 
 SkyPilot is a framework for running LLMs on any cloud, offering maximum cost savings, highest GPU availability, and managed execution. It abstracts away cloud infrastructure by launching jobs and clusters on any cloud, automatically queueing and running them, and maximizing GPU availability by provisioning (with automatic failover) in all zones/regions/clouds you are able to use. You can use it with AWS, Azure, GCP, and a number of other clouds. They have made it easy serve LLMs with vLLM in your own cloud using SkyPilot by [providing a simple SkyPilot yaml task file to launch vLLM](https://github.com/skypilot-org/skypilot/tree/master/llm/vllm). You can also read more in their [docs](https://skypilot.readthedocs.io/en/latest/).
 
+#### AnyScale Private Endpoints
+
+AnyScale Private Endpoints is a full-stack LLM API solution running in your cloud. It's designed to maximize performance and minimize cost inside your own environment. To learn more, check out their product page [here](https://www.anyscale.com/endpoints#private).
+
 #### AWS
 
 ##### AWS VM instances
